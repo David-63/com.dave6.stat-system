@@ -33,13 +33,13 @@ namespace Core.Editor
 
         public void Initialize(ScriptableObject target, List<T> items)
         {
-            Debug.Log("초기화 됨");
             m_Target = target;
             m_Items = items;
             InitializeInternal();
         }
         void InitializeInternal()
         {
+            // 리스트에 라벨 추가
             Func<VisualElement> makeItem = () => new Label();
             m_ListView.makeItem = makeItem;
             m_ListView.selectionChanged += objects =>
@@ -47,6 +47,8 @@ namespace Core.Editor
                 T item = objects.First() as T;
                 Select(item);
             };
+
+            // 리스트 항목과 시각 요소 연결
             Action<VisualElement, int> bindItem = (element, i) =>
             {
                 Label label = element as Label;
@@ -66,10 +68,11 @@ namespace Core.Editor
                 label.BindProperty(serializedProperty);
             };
             m_ListView.bindItem = bindItem;
+            // 리스트뷰에 소스 연결
             m_ListView.itemsSource = m_FilteredListView = m_Items;
 
             m_CreateButton.clicked += Create;
-            
+
             m_ToolbarSearchField.RegisterCallback<ChangeEvent<string>>(evt =>
             {
                 m_ListView.itemsSource = m_FilteredListView = m_Items
