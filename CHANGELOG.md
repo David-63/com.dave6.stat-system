@@ -1,6 +1,11 @@
 ## [0.0.1] - 2025.11.30
 
 ### Added
-- 노드 그래프 추가:
-  - 스텟 데이터베이스에 Formula 기능 추가
-  - 노드 그래프로 속성 편집 가능
+- 레벨시스템 추가:
+  - ILevelable, LevelNode, LevelController 추가
+  - StatController를 확장한 플레이어 컨트롤러 추가 (+ ILevelable)
+  - 요구 경험치량 Formula 예제 추가
+
+### Fixed
+- PowerNode input A B 바뀐거 수정
+- ScalarNode 의 Value 값을 보이도록 수정

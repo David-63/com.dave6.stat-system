@@ -8,8 +8,8 @@ namespace Core.Nodes
 {
     public class PowerNode : IntermediateNode
     {
-        [HideInInspector] public CodeFunctionNode exponent;
         [HideInInspector] public CodeFunctionNode @base;
+        [HideInInspector] public CodeFunctionNode exponent;
 
         public override float value => (float)Math.Pow(@base.value, exponent.value);
 
@@ -35,11 +35,11 @@ namespace Core.Nodes
         {
             if (portName.Equals("A"))
             {
-                exponent = child;
+                @base = child;
             }
             else
             {
-                @base = child;
+                exponent = child;
             }
         }
 
@@ -47,11 +47,11 @@ namespace Core.Nodes
         {
             if (portName.Equals("A"))
             {
-                exponent = null;
+                @base = null;
             }
             else
             {
-                @base = null;
+                exponent = null;
             }
         }
     }

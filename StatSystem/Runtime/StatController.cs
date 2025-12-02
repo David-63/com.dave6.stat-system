@@ -16,7 +16,7 @@ namespace StatSystem
         public event Action Initialized;
         public event Action WillUninitialize;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             if (!m_IsInitialized)
             {
@@ -29,7 +29,7 @@ namespace StatSystem
             WillUninitialize?.Invoke();
         }
 
-        void Initialize()
+        protected void Initialize()
         {
             foreach (StatDefinition definition in m_StatDatabase.stats)
             {
